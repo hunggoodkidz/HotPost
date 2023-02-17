@@ -26,9 +26,9 @@ Front-End (Client):
 * MongoDB Cloud
 
 ## Features
-* In progress.... 
+In progress.... 
 
-* Future features:
+Future features:
 
 * Custom photo feed
 * Post photo posts from camera or gallery

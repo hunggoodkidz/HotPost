@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.bg {
+  padding-top: 70px;
+  width: 550px;
+  height: 700px;
+  float: left;
+  margin: 10px;
+}
+
+body {
+  background-color: #fafafa !important;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.right-column {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  width: 400px;
+  margin: 25px;
+  padding: 35px;
+}
+
+.logo {
+  margin: 10px auto;
+}
+
+.info {
+  font-weight: 600px;
+  line-height: 20px;
+  font-size: 17px;
+  color: #999;
+}
+
+.logofb {
+  width: 50px;
+}
+
+button img {
+  height: 29px !important;
+  padding: 0 8px 2px;
+}
+
+.or {
+  font-size: 13px !important;
+  color: #999;
+  font-weight: 600px;
+}
+
+.or::before {
+  content: "";
+  background: #efefef;
+  display: block;
+  height: 2px;
+  width: 110px;
+  position: relative;
+  top: 11px;
+}
+
+.or::after {
+  content: "";
+  background: #efefef;
+  display: block;
+  height: 2px;
+  width: 110px;
+  position: relative;
+  bottom: 10px;
+  left: 220px;
+}
+
+.form-group {
+  margin-bottom: 6px !important;
+}
+
+.form-control {
+  background: #fafafa !important;
+  border: 1px solid #efefef !important;
+  font-size: 15px !important;
+}
+::placeholder {
+  color: #999 !important;
+}
+
+.btn {
+  margin: 15px auto;
+  padding: 5px !important;
+  font-weight: 500 !important;
+}
+
+.btn-primary {
+  background-color: #3897f0 important;
+  border: 1px solid #3897f0 !important;
+}
+
+.terms {
+  line-height: 18px;
+  font-size: 14px;
+  color: #999;
+  margin: 5px 20px;
+}
+
+.right-column-login {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  width: 400px;
+  margin: 25px;
+  padding: 35px;
+}
+
+.right-column-login a:hover {
+  text-decoration: none;
+}

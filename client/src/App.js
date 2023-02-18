@@ -11,8 +11,8 @@ function App() {
       <div className="App">
         <div className="main">
           <Routes>
-            <Route exact path="/:page" component={PageRender} />
-            <Route exact path="/:page/:id" component={PageRender} />
+            <Route exact path="/:page" element={PageRender} />
+            <Route exact path="/:page/:id" element={PageRender} />
           </Routes>
         </div>
       </div>

@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import NotFound from "./components/NotFound";
 
 const generatePage = (pageName) => {
-  const component = () => require(`./pages/${pageName}`).default;
+  const element = () => require(`./pages/${pageName}`).default;
 
   try {
-    return React.createElement(component());
+    return React.createElement(element());
   } catch (err) {
     return <NotFound />;
   }
@@ -14,13 +14,15 @@ const generatePage = (pageName) => {
 
 const PageRender = () => {
   const { page, id } = useParams();
+
   let pageName = "";
+
   if (id) {
-    pageName = "${page}/[id]";
+    pageName = `${page}/$[id]`;
   } else {
-    pageName = "${page}";
+    pageName = `${page}`;
   }
-  console.log(pageName);
+
   return generatePage(pageName);
 };
 

@@ -9,9 +9,9 @@ import { Link} from 'react-router-dom'
 
 const cx = classNames.bind(styles);
 
-const Register = () => {
+const Login = () => {
   return (
-<div className={cx("container")}>
+    <div className={cx("container")}>
       <div className={cx("row")}>
         <div className={cx("col-sm-6")}>
           <img
@@ -34,24 +34,18 @@ const Register = () => {
             <p className={cx("or")}>OR</p>
             <form>
               <div className={cx('form-group')}>
-                <input type="email" className={cx('form-control')} placeholder="Mobile Number or Email" />
-              </div>
-              <div className={cx('form-group')}>
-                <input type="fullname" className={cx('form-control')} placeholder="Full Name" />
-              </div>
-              <div className={cx('form-group')}>
                 <input type="text" className={cx('form-control')} placeholder="Username" />
               </div>
               <div className={cx('form-group')}>
                 <input type="password" className={cx('form-control')} placeholder="Password" />
               </div>
-              <button type="submit" className={cx('btn btn-primary btn-block')}>Sign UP</button>
+              <button type="submit" className={cx('btn btn-primary btn-block')}>Sign In</button>
             </form>
             <p className={cx('terms')}>By signing up, you agree to our <b>Terms, Data Policy</b> and <b>Cookies Policy</b>.</p>
           </div>
           <div className={cx("right-column text-center")}>
-            <p> Already have an account ?  
-                <Link to="/login" > Log in</Link>
+            <p> Don't have an account?  
+                <Link to="/register" > Sign Up</Link>
             </p>
           </div>
         </div>
@@ -59,7 +53,7 @@ const Register = () => {
 
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Login;

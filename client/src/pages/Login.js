@@ -1,9 +1,11 @@
 import React from "react";
 import classNames from "classnames/bind";
-import styles from "./Login.css";
+import styles from "../styles/login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook } from '@fortawesome/free-brands-svg-icons' 
+import logo from '../images/logo_hotpost.png';
+import { Link} from 'react-router-dom'
 
 const cx = classNames.bind(styles);
 
@@ -20,9 +22,8 @@ const Login = () => {
         </div>
         <div className={cx("col-sm-6")}>
           <div className={cx("right-column text-center")}>
-          <h2 className={cx('name-logo')}>HotPosts</h2>
-
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1QhO1486B3j5PHN22svKVJXj8aX9pG4rypQ&usqp=CAU" className={cx("hotpost-logo")} alt="" />
+          <img src={logo} width="250px" alt ="logo"/>
+            {/*<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1QhO1486B3j5PHN22svKVJXj8aX9pG4rypQ&usqp=CAU" className={cx("hotpost-logo")} alt="" /> */}   
             <p className={cx("info")}>
               Sign up to see photos and videos form your friends
             </p>
@@ -42,7 +43,14 @@ const Login = () => {
             </form>
             <p className={cx('terms')}>By signing up, you agree to our <b>Terms, Data Policy</b> and <b>Cookies Policy</b>.</p>
           </div>
+          <div className={cx("right-column text-center")}>
+            <p> Don't have an account?  
+                <Link to="/register" > Sign Up</Link>
+            </p>
+          </div>
         </div>
+
+
       </div>
     </div>
   );

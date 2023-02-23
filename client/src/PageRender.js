@@ -12,7 +12,7 @@ const generatePage = (pageName) => {
   }
 };
 
-const PageRender = () => {
+function PageRender() {
   const { page, id } = useParams();
 
   let pageName = "";
@@ -24,6 +24,6 @@ const PageRender = () => {
   }
 
   return generatePage(pageName);
-};
+}
 
 export default PageRender;

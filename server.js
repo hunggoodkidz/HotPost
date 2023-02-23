@@ -1,21 +1,14 @@
-dotenv.config();
+const dotenv = require('dotenv');
+const express = require('express')
+const mongoose = require('mongoose')
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
+const connectDB = require('./mongodb/connect')
+const swaggerUi = require('swagger-ui-express');
+const swaggerJSDoc = require('swagger-jsdoc');
 
-import connectDB from './mongodb/connect.js';
-import express from 'express';
-import * as dotenv from 'dotenv';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-
+dotenv.config()
 const app = express();
-app.use(cors());
-app.use(express.json());
-app.use(cookieParser());
-
-
-app.get('/', (req, res) => {
-    res.json({msg:"Hello"})
-
-});
 
 const startServer = async () => {
 
@@ -32,8 +25,18 @@ const startServer = async () => {
         console.log(error);
     }
 
-
+    
 }
-
 startServer();
+
+
+app.use(cors());
+app.use(express.json());
+app.use(cookieParser());
+
+
+//Routes
+app.use('/api', require('./routes/authRouter'))
+
+
 

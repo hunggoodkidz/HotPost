@@ -4,9 +4,17 @@
 }
 
 .phone {
+  position: relative;
   height: 650px;
   float: right;
   margin: 10px;
+}
+
+.image-phone {
+  position: absolute;
+    width: 260px;
+    top: 35px;
+    left: 10rem;
 }
 
 .container {
@@ -24,9 +32,8 @@
   margin: 10px;
   padding: 40px;
 }
-.name-logo{
+.name-logo {
   color: #999;
-
 }
 
 .hotpost-logo {

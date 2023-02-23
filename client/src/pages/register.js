@@ -4,7 +4,7 @@ import styles from "../styles/login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook } from '@fortawesome/free-brands-svg-icons' 
-import logo from '../images/logo_hotpost.png';
+import logo from "../assets/images/logo_hotpost.png";
 import { Link} from 'react-router-dom'
 
 const cx = classNames.bind(styles);
@@ -51,7 +51,7 @@ const Register = () => {
           </div>
           <div className={cx("right-column text-center")}>
             <p> Already have an account ?  
-                <Link to="/login" > Log in</Link>
+                <Link to="/login"> Log in</Link>
             </p>
           </div>
         </div>

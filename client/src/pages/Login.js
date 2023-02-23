@@ -18,6 +18,7 @@ const Login = () => {
   const [currentImage, setCurrentImage] = useState(image1)
 
   const imagesPhone = [image1,image2,image3]
+  console.log("asbaoel")
 
   useEffect(() => {
     const intervalId = setInterval(() => {

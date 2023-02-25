@@ -28,20 +28,28 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
+//Swagger
+var database
+
+const options = {
+  definition:{
+    openapi: '3.0.0',
+    info:{
+      title: 'Node JS API Project HotPost for mongodb',
+      version:'1.0.0'
+    },
+    servers:[
+      {
+        api:'http://localhost:5000/'
+      }
+    ]
+  },
+  apis:['./server.js']
+}
+
+const swaggerSpec = swaggerJSDoc(options)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
 //Routes
 app.use("/api", require("./routes/authRouter"));
 
-const URI = process.env.MONGODB_URL;
-mongoose.connect(
-  URI,
-  {
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  (err) => {
-    if (err) throw err;
-    console.log("Connected tomongodb");
-  }
-);

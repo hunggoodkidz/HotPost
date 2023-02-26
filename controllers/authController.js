@@ -10,11 +10,15 @@ const authController = {
 
       const user_name = await Users.findOne({ username: newUserName });
       if (user_name)
-        return res.status(400).json({ msg: "This user name already exists." });
+        return res.status(400).json({ msg: "This user name is already exists." });
 
       const user_email = await Users.findOne({ email });
       if (user_email)
-        return res.status(400).json({ msg: "This email already exists." });
+        return res.status(400).json({ msg: "This email is already exists." });
+
+      const user_phone = await Users.findOne({ phone });
+      if (user_phone)
+        return res.status(400).json({ msg: "This phone number is already exists." });
 
       if (password.length < 6)
         return res
@@ -37,7 +41,7 @@ const authController = {
 
       res.cookie("refreshtoken", refresh_token, {
         httpOnly: true,
-        path: "/api/generateAccessToken",
+        path: "/api/refresh_token",
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
       });
 
@@ -78,7 +82,7 @@ const authController = {
 
       res.cookie("refreshtoken", refresh_token, {
         httpOnly: true,
-        path: "/api/generateAccessToken",
+        path: "/api/refresh_token",
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
       });
 
@@ -98,7 +102,7 @@ const authController = {
   logout: async (req, res) => {
     try {
       res.clearCookie("refreshtoken", {
-        path: "/api/generateAccessToken",
+        path: "/api/refresh_token",
       });
       return res.json({ msg: "Logged out!" });
     } catch (err) {

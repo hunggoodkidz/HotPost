@@ -29,27 +29,38 @@ app.use(express.json());
 app.use(cookieParser());
 
 //Swagger
-var database
+var database;
 
 const options = {
-  definition:{
-    openapi: '3.0.0',
-    info:{
-      title: 'Node JS API Project HotPost for mongodb',
-      version:'1.0.0'
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Node JS API Project HotPost for mongodb",
+      version: "1.0.0",
     },
-    servers:[
+    servers: [
       {
-        api:'http://localhost:5000/'
-      }
-    ]
+        url: "http://localhost:5000/",
+      },
+    ],
   },
-  apis:['./server.js']
-}
+  apis: ["./server.js"],
+};
 
-const swaggerSpec = swaggerJSDoc(options)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+const swaggerSpec = swaggerJSDoc(options);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+/**
+ * @swagger
+ * /:
+ *  get:
+ *      sumary: This api is used to get all the users in the database
+ *      description: This api is used to get all the users in the database
+ *      responses:
+ *            200:
+ *                description: to see all the users in the database
+ */
+app.get('/api/users')
 
 //Routes
 app.use("/api", require("./routes/authRouter"));
-

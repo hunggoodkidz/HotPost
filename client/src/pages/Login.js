@@ -1,4 +1,4 @@
-import React,{useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import styles from "../styles/login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,42 +6,43 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import logo from "../assets/images/logo_hotpost.png";
 import { Link } from "react-router-dom";
-import screen from "../assets/images/screenphone.png"
-import image1 from "../assets/images/image1.png"
-import image2 from "../assets/images/image2.png"
-import image3 from "../assets/images/image3.png"
-
+import screen from "../assets/images/screenphone.png";
+import image1 from "../assets/images/image1.png";
+import image2 from "../assets/images/image2.png";
+import image3 from "../assets/images/image3.png";
 
 const cx = classNames.bind(styles);
 
 const Login = () => {
-  const [currentImage, setCurrentImage] = useState(image1)
+  const initialState = { email: "", password: "" };
+  const [userData, setUserData] = useState(initialState);
+  const { email, password } = userData;
+  const [currentImage, setCurrentImage] = useState(image1);
 
-  const imagesPhone = [image1,image2,image3]
+  const imagesPhone = [image1, image2, image3];
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-        setCurrentImage(imagesPhone[Math.floor(Math.random() * imagesPhone.length)]);
-        console.log(imagesPhone);
-    }, 3000)
-    
+      setCurrentImage(
+        imagesPhone[Math.floor(Math.random() * imagesPhone.length)]
+      );
+      console.log(imagesPhone);
+    }, 3000);
+
     return () => clearInterval(intervalId);
-}, [imagesPhone])
+  }, [imagesPhone]);
 
   return (
     <div className={cx("container")}>
       <div className={cx("row")}>
         <div className={cx("col-sm-6")}>
-          <img
-            src={screen}
-            className={cx("phone")}
-            alt=""
-          />
-          <img
-            src={currentImage}
-            className={cx("image-phone")}
-            alt=""
-          />
+          <img src={screen} className={cx("phone")} alt="" />
+          <img src={currentImage} className={cx("image-phone")} alt="" />
         </div>
         <div className={cx("col-sm-6")}>
           <div className={cx("right-column text-center")}>

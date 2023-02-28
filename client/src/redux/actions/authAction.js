@@ -1,39 +1,60 @@
-import {postDataAPI} from '../../utils/fetchData'
+import { GLOBALTYPES } from "./globalTypes";
+import { postDataAPI } from "../../utils/fetchData";
 
-export const TYPES = {
-    AUTH:'AUTH'
-} 
+export const login = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } });
+    const res = await postDataAPI("login", data);
 
-export const login = (data) => async (dispatch) =>{
+    dispatch({
+      type: GLOBALTYPES.AUTH,
+      payload: {
+        token: res.data.access_token,
+        user: res.data.user,
+      },
+    });
+
+    localStorage.setItem("firstLogin", true);
+
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: {
+        success: res.data.msg,
+      },
+    });
+  } catch (err) {
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: {
+        error: err.response.data.msg,
+      },
+    });
+  }
+};
+
+export const refreshToken = () => async (dispatch) => {
+  const firstLogin = localStorage.getItem("firstlogin");
+  if (firstLogin) {
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } });
+
     try {
-        dispatch({type: 'NOTIFY', payload: {loading: true}});
-        const res = await postDataAPI('login',data)
-        
-        dispatch({
-            type: 'AUTH',
-            payload: {
-                token: res.data.access_token,
-                user: res.data.user
-            }
-        })
+      const res = await postDataAPI("/generateAccessToken");
+      dispatch({
+        type: GLOBALTYPES.AUTH,
+        payload: {
+          token: res.data.access_token,
+          user: res.data.user,
+        },
+      });
 
-        localStorage.setItem("firstLogin", true)
-
-
-        dispatch({
-            type: 'NOTIFY',
-            payload: {
-                success: res.data.msg
-            }
-        })
-        } catch (err) {
-            dispatch({
-                type:'NOTIFY',
-                payload:{
-                    error:err.response.data.msg
-                }
-                
-            })
+      dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+    } catch (err) {
+      dispatch({
+        type: GLOBALTYPES.ALERT,
+        payload: {
+          error: err.response.data.msg,
+        },
+      });
     }
-
-}
+  }
+};

@@ -60,6 +60,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
  *            200:
  *                description: to see all the users in the database
  */
+
 app.get('/api/users')
 
 //Routes

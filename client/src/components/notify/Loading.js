@@ -1,17 +1,28 @@
 import React from "react";
-import { Audio } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 
 const Loading = () => {
   return (
-    <Audio
-      height="1000"
-      width="1000"
-      radius="9"
-      color="green"
-      ariaLabel="loading"
-      wrapperStyle
-      wrapperClass
+    <div className="container" style={{
+      position: "fixed",
+      zIndex:"1000",
+    }}>
+    <Comment
+      visible={true}
+      ariaLabel="comment-loading"
+      height="300"
+      width="300"
+      wrapperStyle={{
+        position: "fixed",
+        zIndex: "999",
+        left: "40%",
+        top: "30%",
+      }}
+      wrapperClass="comment-wrapper"
+      color="#fff"
+      backgroundColor="#F4442E"
     />
+    </div>
   );
 };
 

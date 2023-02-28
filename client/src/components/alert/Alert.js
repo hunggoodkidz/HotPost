@@ -15,7 +15,7 @@ const Alert = () => {
 
       {alert.error && (
         <Toast
-          msg={{ title: "Error", body: alert.error }}
+          msg={{ title: "Đăng nhập thất bại!", body: alert.error }}
           handleShow={() => dispatch({ type: GLOBALTYPES.ALERT, payload: {} })}
           bgColor="bg-danger"
         />
@@ -23,7 +23,7 @@ const Alert = () => {
 
       {alert.success && (
         <Toast
-          msg={{ title: "Success", body: alert.success }}
+          msg={{ title: "Đăng nhập thành công!", body: alert.success }}
           handleShow={() => dispatch({ type: GLOBALTYPES.ALERT, payload: {} })}
           bgColor="bg-success"
         />

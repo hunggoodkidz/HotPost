@@ -1,4 +1,5 @@
 import React from "react";
+import { Comment } from "react-loader-spinner";
 
 const Loading = () => {
   return (
@@ -12,17 +13,22 @@ const Loading = () => {
         zIndex: 50,
       }}
     >
-      <svg width="205" height="250" viewBox="0 0 40 50">
-        <polygon
-          stroke="#fff"
-          strokeWidth="1"
-          fill="none"
-          points="20,1 40,40 1,40"
-        />
-        <text fill="#fff" x="5" y="47">
-          Loading
-        </text>
-      </svg>
+      <Comment
+        visible={true}
+        ariaLabel="comment-loading"
+        height="300"
+        width="300"
+        wrapperStyle={{
+          position: "fixed",
+          zIndex: "999",
+          left: "40%",
+          top: "30%",
+        }}
+        wrapperClass="comment-wrapper"
+        color="#fff"
+        backgroundColor="#F4442E"
+        Loading
+      />
     </div>
   );
 };

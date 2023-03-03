@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import styles from "../styles/register.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import logo from "../assets/images/logo_hotpost.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { register } from "../redux/actions/authAction";
 import { useSelector, useDispatch } from "react-redux";
 
 const cx = classNames.bind(styles);
 
 const Register = () => {
-  const { alert } = useSelector((state) => state);
+  const { auth, alert } = useSelector((state) => state);
+  const history = useNavigate()
   const initialState = {
     email: "",
     fullname: "",
@@ -25,6 +26,10 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if(auth.token) history.push("/")
+  }, [auth.token, history])
+
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -36,17 +41,11 @@ const Register = () => {
     dispatch(register(userData));
   };
 
+
   return (
     <div className={cx("container")}>
       <div className={cx("row")}>
-        <div className={cx("col-sm-6")}>
-          <img
-            src="https://media.gcflearnfree.org/content/633d944b3823fb02e84dce55_10_05_2022/Screen%20Shot%202022-10-10%20at%202.28.19%20PM.png"
-            className={cx("phone")}
-            alt=""
-          />
-        </div>
-        <div className={cx("col-sm-6")}>
+        <div className={cx("col-sm-12")}>
           <div className={cx("right-column text-center")}>
             <img src={logo} width="250px" alt="logo" />
             {/*<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1QhO1486B3j5PHN22svKVJXj8aX9pG4rypQ&usqp=CAU" className={cx("hotpost-logo")} alt="" /> */}

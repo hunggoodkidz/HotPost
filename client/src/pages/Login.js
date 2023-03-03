@@ -5,13 +5,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import logo from "../assets/images/logo_hotpost.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import screen from "../assets/images/screenphone.png";
 import image1 from "../assets/images/image1.png";
 import image2 from "../assets/images/image2.png";
 import image3 from "../assets/images/image3.png";
 import { login } from "../redux/actions/authAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +25,12 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const imagesPhone = [image1, image2, image3];
+  const history = useNavigate();
+  const { auth } = useSelector((state) => state);
+
+  useEffect(() => {
+    if (auth.token) history.push("/");
+  }, [auth.token, history]);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;

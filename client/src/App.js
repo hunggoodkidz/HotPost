@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PageRender from "./customRouter/PageRender";
-import PrivateRouter from "../customRouter/PrivateRouter";
+import PrivateRouter from "./customRouter/privateRouter";
 
 import Home from "./pages/home";
 import Login from "./pages/Login";

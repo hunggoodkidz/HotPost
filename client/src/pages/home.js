@@ -1,9 +1,14 @@
 import React from "react";
+//import classNames from "classnames/bind";
+//import styles from "../styles/home.css";
+import Header from "../components/Header";
+
+//const cx = classNames.bind(styles);
 
 const Home = () => {
   return (
     <div>
-      <h1>asobale</h1>
+      <Header />
     </div>
   );
 };

@@ -1,14 +1,14 @@
 import { GLOBALTYPES } from "../actions/globalTypes";
 
-const initialState = {};
+const initialState = false
 
-const authReducer = (state = initialState, action) => {
+const themeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GLOBALTYPES.AUTH:
+    case GLOBALTYPES.THEME:
       return action.payload;
     default:
       return state;
   }
 };
 
-export default authReducer;
+export default themeReducer;

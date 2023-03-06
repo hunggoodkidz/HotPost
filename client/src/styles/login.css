@@ -12,9 +12,9 @@
 
 .image-phone {
   position: absolute;
-    width: 260px;
-    top: 35px;
-    left: 10rem;
+  width: 260px;
+  top: 35px;
+  left: 20rem;
 }
 
 .container {
@@ -74,7 +74,7 @@ button img {
   left: 160px;
 }
 .form-group {
-  margin-bottom: 6px !important;
+  margin-bottom: 15px !important;
 }
 .form-control {
   background: #fafafa !important;
@@ -113,7 +113,7 @@ button img {
   text-decoration: none;
 }
 
-.pass{
+.pass {
   position: relative;
 }
 

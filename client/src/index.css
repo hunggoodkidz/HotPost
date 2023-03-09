@@ -2,28 +2,23 @@ body {
   padding: 0;
   box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-:root {
-  --nav-medium-width: 244px;
-  --nav-wide-width: 355px;
-  font-family: "Montserrat", sans-serif;
-}
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-#theme {
+#theme{
   display: none;
 }
 
-#theme:checked ~ .App {
-  filter: invert(1);
+#theme:checked ~ .App{
+  filter: invert(1)
 }
 
 .App {
@@ -31,25 +26,10 @@ code {
   min-height: 100vh;
   background: white;
 }
-.main {
+.main{
   max-width: 1000px;
   width: 100%;
   margin: auto;
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-.img {
-  object-fit: cover;
-}
-
 /* -----------AUTH----------*/
-
-/* -----------LOADING----------*/
-
-@import url("./styles/loading.css");
-/* -----------SideBar----------*/

@@ -1,0 +1,6 @@
+client/src/state/index.js
+client/src/scenes/profilePage/index.jsx
+client/src/scenes/navbar/index.jsx
+client/src/scenes/loginPage/index.jsx
+client/src/scenes/homePage/index.jsx
+client/src/theme.js

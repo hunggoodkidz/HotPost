@@ -19,12 +19,9 @@ Back-End (Server): NodeJS + MongoDB
 
 Front-End (Client):
 
-- Angular
 - ReactJS
-- VueJS
-- NextJS
 - etc... Any platform used in JS
-- MongoDB Cloud
+- MongoDB 
 
 ## Features
 

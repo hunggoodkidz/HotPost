@@ -71,3 +71,34 @@ export const likePost = async (req, res) => {
     res.status(404).json({ message: err.message });
   }
 };
+
+
+export const commentPost = async (req, res) => {
+  try {
+    const { id } = req.params
+    const { userId, comment } = req.body
+    const post = await Post.findById(id)
+    const user = await User.findById(userId)
+
+    if (!user) {
+      res.status(404).json({ message: 'User not found' })
+      return
+    }
+
+    const newComment = {
+      userId,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      userPicturePath: user.picturePath,
+      comment,
+      createdAt: new Date().toISOString(),
+    }
+
+    post.comments.push(newComment)
+    await post.save()
+
+    res.status(201).json(post)
+  } catch (err) {
+    res.status(404).json({ message: err.message })
+  }
+}

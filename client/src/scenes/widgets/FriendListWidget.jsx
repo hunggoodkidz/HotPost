@@ -25,7 +25,7 @@ const FriendListWidget = ({ userId }) => {
 
   useEffect(() => {
     getFriends()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [userId]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <WidgetWrapper>
@@ -40,7 +40,7 @@ const FriendListWidget = ({ userId }) => {
       <Box display="flex" flexDirection="column" gap="1.5rem">
         {friends.map((friend) => (
           <Friend
-            key={friend._id}
+            key={friend._id} // add the key prop
             friendId={friend._id}
             name={`${friend.firstName} ${friend.lastName}`}
             subtitle={friend.occupation}

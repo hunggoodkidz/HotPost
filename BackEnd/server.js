@@ -52,6 +52,23 @@ app.use('/auth', authRoutes)
 app.use('/users', userRoutes)
 app.use('/posts', postRoutes)
 
+// Swagger configuration
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Albums API",
+      description: "A simple API to manage music albums",
+      version: "1.0.0",
+    },
+  },
+  apis: ["./routes/albums.js"],
+};
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001
 mongoose

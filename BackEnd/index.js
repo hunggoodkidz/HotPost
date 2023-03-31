@@ -19,7 +19,8 @@ import Post from "./models/Post.js";
 import { users, posts } from "./data/index.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-
+import swaggerApp from "./swagger.js";
+import YAML from "yamljs";
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
@@ -50,28 +51,13 @@ const upload = multer({ storage });
 app.post("/auth/register", upload.single("picture"), register);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
-const swaggerOptions = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Swagger API Documentation",
-      description: "A simple API to manage music albums",
-      version: "1.0.0",
-    },
-  },
-  apis: ["./routes/posts.js"],
-};
-
-const swaggerDocs = swaggerJSDoc(swaggerOptions);
-
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
 
 
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
+app.use(swaggerApp);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001;

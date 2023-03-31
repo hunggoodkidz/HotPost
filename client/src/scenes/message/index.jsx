@@ -16,6 +16,7 @@ const MessagePage = () => {
           <TextField label="Search for friends" fullWidth variant="outlined"  className="chatMenuInput"/>
               
                 <Conversation/>
+
           </div>
         </div>
         <div className="chatBox">

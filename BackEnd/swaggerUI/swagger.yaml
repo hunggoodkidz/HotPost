@@ -1,0 +1,206 @@
+swagger: "2.0"
+info:
+  description: "This is a experiment of an api development."
+  version: "1.0.0"
+  title: "Hostpost Swagger API"
+host: "localhost:3001"
+basePath: "/"
+
+schemes:
+  - "http"
+
+securityDefinitions:
+  BearerAuth:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+
+paths:
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          description: The user ID
+          required: true
+          type: string
+      security:
+        - BearerAuth: []
+      responses:
+        200:
+          description: Returns the specified user
+        401:
+          description: Unauthorized
+        404:
+          description: User not found
+
+  /users/{id}/friends:
+    get:
+      summary: Get user friends
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          description: The user ID
+          required: true
+          type: string
+      security:
+        - BearerAuth: []
+      responses:
+        200:
+          description: Returns the specified user's friends
+        401:
+          description: Unauthorized
+        404:
+          description: User not found
+
+  /users/{id}/{friendId}:
+    patch:
+      summary: Add or remove friend
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          description: The user ID
+          required: true
+          type: string
+        - name: friendId
+          in: path
+          description: The friend's user ID
+          required: true
+          type: string
+      security:
+        - BearerAuth: []
+      responses:
+        200:
+          description: Returns the updated user
+        401:
+          description: Unauthorized
+        404:
+          description: User not found
+          
+  /posts:
+    get:
+      tags:
+        - "Posts"
+      summary: "Get all posts"
+      description: "Returns a list of all posts."
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Post"
+        401:
+          description: "Unauthorized"
+      security:
+        - bearerAuth: []
+    patch:
+      tags:
+        - "Posts"
+      summary: "Like a post"
+      description: "Like a post by its ID."
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID of the post to like."
+          required: true
+          type: "string"
+        - in: "header"
+          name: "Authorization"
+          description: "Access token."
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Post"
+        401:
+          description: "Unauthorized"
+  /posts/{userId}/posts:
+    get:
+      tags:
+        - "Posts"
+      summary: "Get a user's posts"
+      description: "Returns a list of a user's posts."
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "userId"
+          description: "ID of the user whose posts to retrieve."
+          required: true
+          type: "string"
+        - in: "header"
+          name: "Authorization"
+          description: "Access token."
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Post"
+        401:
+          description: "Unauthorized"
+    security:
+        - bearerAuth: []
+  /posts/{id}/comment:
+    patch:
+      tags:
+        - "Posts"
+      summary: "Comment on a post"
+      description: "Add a comment to a post by its ID."
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID of the post to comment on."
+          required: true
+          type: "string"
+        - in: "header"
+          name: "Authorization"
+          description: "Access token."
+          required: true
+          type: "string"
+        - in: "body"
+          name: "comment"
+          description: "Comment content."
+          required: true
+          schema:
+            type: "object"
+            properties:
+              comment:
+                type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Post"
+        401:
+          description: "Unauthorized"
+  /swagger:
+    get:
+      tags:
+        - "Swagger"
+      summary: "Get Swagger documentation"
+      description: "Returns the Swagger UI to display the API documentation."
+      produces:
+        - "text/html"
+      responses:
+        200:
+          description: "Successful operation"

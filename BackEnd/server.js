@@ -19,7 +19,7 @@ import Post from "./models/Post.js";
 import { users, posts } from "./data/index.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import swaggerApp from "./swagger.js";
+import swaggerApp from "./swaggerUI/swagger.js";
 import YAML from "yamljs";
 
 /* CONFIGURATIONS */

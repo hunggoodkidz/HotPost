@@ -4,7 +4,15 @@ import {
   FavoriteOutlined,
   ShareOutlined,
 } from '@mui/icons-material'
-import { Box, Divider, IconButton, Typography, useTheme , Button, TextField  } from '@mui/material'
+import {
+  Box,
+  Divider,
+  IconButton,
+  Typography,
+  useTheme,
+  Button,
+  TextField,
+} from '@mui/material'
 import FlexBetween from 'components/FlexBetween'
 import Friend from 'components/Friend'
 import WidgetWrapper from 'components/WidgetWrapper'
@@ -48,23 +56,23 @@ const PostWidget = ({
     dispatch(setPost({ post: updatedPost }))
   }
 
-   const handleSubmit = async (e) => {
-     e.preventDefault()
-     const response = await fetch(
-       `http://localhost:3001/posts/${postId}/comment`,
-       {
-         method: 'PATCH',
-         headers: {
-           Authorization: `Bearer ${token}`,
-           'Content-Type': 'application/json',
-         },
-         body: JSON.stringify({ userId: loggedInUserId, comment }),
-       }
-     )
-     const updatedPost = await response.json()
-     dispatch(setPost({ post: updatedPost }))
-     setComment('')
-   }
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const response = await fetch(
+      `http://localhost:3001/posts/${postId}/comment`,
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: loggedInUserId, comment }),
+      }
+    )
+    const updatedPost = await response.json()
+    dispatch(setPost({ post: updatedPost }))
+    setComment('')
+  }
   return (
     <WidgetWrapper m="2rem 0">
       <Friend
@@ -112,14 +120,28 @@ const PostWidget = ({
       </FlexBetween>
       {isComments && (
         <Box mt="0.5rem">
-          {comments.map((comment, i) => (
-            <Box key={`${name}-${i}`}>
-              <Divider />
-              <Typography sx={{ color: main, m: '0.5rem 0', pl: '1rem' }}>
-                {comment.comment}
-              </Typography>
-            </Box>
-          ))}
+          {comments.map((comment, i) => {
+            const { firstname, lastname, userPicturePath } = comment
+            return (
+              <Box key={`${name}-${i}`}>
+                <Divider />
+             
+                  <Typography sx={{ color: 'red', m: '0.5rem 0', pl: '1rem' }}>
+                    <Friend
+                      userPicturePath={userPicturePath}
+                      sx={{ display: 'flex', alignItems: 'center' }}
+                    ></Friend>
+                    <p>{`${comment.firstName} ${comment.lastName}`}</p>
+                  </Typography>
+                  <Typography sx={{ color: main, m: '0.5rem 0', pl: '1rem',display:'flex' }}>
+                    {console.log(comment)}
+                    Bình Luận: {comment.comment}
+                  </Typography>
+    
+              </Box>
+            )
+          })}
+
           <Divider />
           <form onSubmit={handleSubmit}>
             <TextField

@@ -3,6 +3,7 @@ import {
   FavoriteBorderOutlined,
   FavoriteOutlined,
   ShareOutlined,
+  DeleteOutlineOutlined
 } from '@mui/icons-material'
 import { Box, Divider, IconButton, Typography, useTheme , Button, TextField  } from '@mui/material'
 import FlexBetween from 'components/FlexBetween'
@@ -13,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setPost } from 'state'
 
 const PostWidget = ({
+  key,
   postId,
   postUserId,
   name,
@@ -48,6 +50,7 @@ const PostWidget = ({
     dispatch(setPost({ post: updatedPost }))
   }
 
+<<<<<<< Updated upstream
    const handleSubmit = async (e) => {
      e.preventDefault()
      const response = await fetch(
@@ -65,6 +68,53 @@ const PostWidget = ({
      dispatch(setPost({ post: updatedPost }))
      setComment('')
    }
+=======
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const response = await fetch(
+      `http://localhost:3001/posts/${postId}/comment`,
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: loggedInUserId, comment }),
+      }
+    )
+    const updatedPost = await response.json()
+    dispatch(setPost({ post: updatedPost }))
+    setComment('')
+  }
+
+  const handleDelete = async () => {
+    const response = await fetch(`http://localhost:3001/posts/${key}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const deletedPost = await response.json()
+    dispatch(setPost({ post: deletedPost }))
+  }
+
+
+  const handleDeleteComment = async (commentId) => {
+    const response = await fetch(
+      `http://localhost:3001/posts/${postId}/comment/${commentId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    const updatedPost = await response.json()
+    dispatch(setPost({ post: updatedPost }))
+  }
+
+>>>>>>> Stashed changes
   return (
     <WidgetWrapper m="2rem 0">
       <Friend
@@ -73,6 +123,14 @@ const PostWidget = ({
         subtitle={location}
         userPicturePath={userPicturePath}
       />
+      <Button
+        onClick={handleDelete}
+        variant="contained"
+        color="primary"
+        sx={{ marginLeft: 'auto' }}
+      >
+        Delete Post
+      </Button>
       <Typography color={main} sx={{ mt: '1rem' }}>
         <span>{description}</span>
       </Typography>
@@ -112,6 +170,7 @@ const PostWidget = ({
       </FlexBetween>
       {isComments && (
         <Box mt="0.5rem">
+<<<<<<< Updated upstream
           {comments.map((comment, i) => (
             <Box key={`${name}-${i}`}>
               <Divider />
@@ -120,6 +179,43 @@ const PostWidget = ({
               </Typography>
             </Box>
           ))}
+=======
+          {comments.map((comment, i) => {
+            const { firstname, lastname, userPicturePath } = comment
+            return (
+              <Box key={`${name}-${i}`}>
+                <Divider />
+
+                <Typography sx={{ color: 'red', m: '0.5rem 0', pl: '1rem' }}>
+                  <Friend
+                    userPicturePath={userPicturePath}
+                    sx={{ display: 'flex', alignItems: 'center' }}
+                  ></Friend>
+                  <p>{`${comment.firstName} ${comment.lastName}`}</p>
+                </Typography>
+                <Typography
+                  sx={{
+                    color: main,
+                    m: '0.5rem 0',
+                    pl: '1rem',
+                    display: 'flex',
+                  }}
+                >
+                  {console.log(comment)}
+                  Bình Luận: {comment.comment}
+                </Typography>
+                <Button
+                  onClick={handleDeleteComment}
+                  variant="contained"
+                  color="primary"
+                >
+                  Delete Comment
+                </Button>
+              </Box>
+            )
+          })}
+
+>>>>>>> Stashed changes
           <Divider />
           <form onSubmit={handleSubmit}>
             <TextField

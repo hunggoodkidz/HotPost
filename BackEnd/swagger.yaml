@@ -16,6 +16,69 @@ securityDefinitions:
     in: "header"
 
 paths:
+
+  /auth/login:
+    post:
+      tags:
+        - "Authentication"
+      summary: "Authenticate a user"
+      description: "Authenticate a user using their email and password"
+      parameters:
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: "johndoe@gmail.com"
+              password:
+                type: string
+                example: "password123"
+      responses:
+        200:
+          description: "Successful login"
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTE2MjM5MDIyfQ.8yvqlVwRwGc32MWKKW5Of8Zv7p_XoPNrkK9qVAbDKSE"
+              user:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: "6069c1dfe0d241a1b2eabcde"
+                  firstName:
+                    type: string
+                    example: "John"
+                  lastName:
+                    type: string
+                    example: "Doe"
+                  email:
+                    type: string
+                    example: "johndoe@gmail.com"
+                  picturePath:
+                    type: string
+                    example: "/images/profile.png"
+                  friends:
+                    type: array
+                    items:
+                      type: string
+                    example: ["6069c1dfe0d241a1b2eabcd1", "6069c1dfe0d241a1b2eabcd2"]
+                  location:
+                    type: string
+                    example: "Los Angeles, CA"
+                  occupation:
+                    type: string
+                    example: "Software Engineer"
+        400:
+          description: "Invalid credentials"
+        500:
+          description: "Server error"
+          
   /users/{id}:
     get:
       summary: Get user by ID
@@ -204,3 +267,4 @@ paths:
       responses:
         200:
           description: "Successful operation"
+  

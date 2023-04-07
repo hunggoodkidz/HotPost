@@ -27,8 +27,6 @@ paths:
           description: The user ID
           required: true
           type: string
-      security:
-        - BearerAuth: []
       responses:
         200:
           description: Returns the specified user

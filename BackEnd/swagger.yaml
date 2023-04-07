@@ -146,7 +146,120 @@ paths:
           description: Unauthorized
         404:
           description: User not found
+
+  /conversations:
+    post:
+      summary: Create a new conversation between two users
+      tags:
+        - Conversations
+      parameters:
+        - in: body
+          name: conversation
+          description: The conversation object to create
+          required: true
+          schema:
+            type: object
+            properties:
+              senderId:
+                type: string
+                example: "12345"
+              receiverId:
+                type: string
+                example: "67890"
+      responses:
+        200:
+          description: The newly created conversation
+          schema:
+        500:
+          description: Internal server error
           
+  /conversations/{userID}/:
+    get:
+      summary: Get the conversation by User ID
+      tags:
+        - Conversations
+      parameters:
+        - in: path
+          name: userID
+          description: The ID of the first user
+          required: true
+          type: string
+      responses:
+        200:
+          description: The conversation between the two specified users
+        500:
+          description: Internal server error
+  /conversations/find/{firstUserId}/{secondUserId}:
+    get:
+      summary: Get the conversation between two specified users
+      tags:
+        - Conversations
+      parameters:
+        - in: path
+          name: firstUserId
+          description: The ID of the first user
+          required: true
+          type: string
+        - in: path
+          name: secondUserId
+          description: The ID of the second user
+          required: true
+          type: string
+      responses:
+        200:
+          description: The conversation between the two specified users
+        500:
+          description: Internal server error
+  /messages:
+    post:
+      summary: Add a new message
+      tags:
+        - Messages
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: message
+          description: The message to add
+          schema:
+            type: object
+            properties:
+              conversationId:
+                type: string
+              sender:
+                type: string
+              text:
+                type: string
+              required:
+                - conversationId
+                - sender
+                - text
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal Server Error
+  /messages/{conversationId}:
+      get:
+        summary: Get messages for a conversation
+        tags:
+          - Messages
+        produces:
+          - application/json
+        parameters:
+          - in: path
+            name: conversationId
+            type: string
+            required: true
+            description: ID of the conversation to get messages for
+        responses:
+          '200':
+            description: OK
+          '500':
+            description: Internal Server Error
+
   /posts:
     get:
       tags:

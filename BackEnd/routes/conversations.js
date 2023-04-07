@@ -1,11 +1,14 @@
-const router = require("express").Router();
-const Conversation = require("../models/Conversation");
+import express from "express";
+import Conversation from "../models/Conversation.js";
 
-//new conv
+const router = express.Router();
 
+// New Conversation
 router.post("/", async (req, res) => {
+  const { senderId, receiverId } = req.body;
+
   const newConversation = new Conversation({
-    members: [req.body.senderId, req.body.receiverId],
+    members: [senderId, receiverId],
   });
 
   try {
@@ -16,8 +19,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-//get conv of a user
-
+// Get Conversations of a User
 router.get("/:userId", async (req, res) => {
   try {
     const conversation = await Conversation.find({
@@ -29,17 +31,16 @@ router.get("/:userId", async (req, res) => {
   }
 });
 
-// get conv includes two userId
-
+// Get Conversation that includes two userIds
 router.get("/find/:firstUserId/:secondUserId", async (req, res) => {
   try {
     const conversation = await Conversation.findOne({
       members: { $all: [req.params.firstUserId, req.params.secondUserId] },
     });
-    res.status(200).json(conversation)
+    res.status(200).json(conversation);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-module.exports = router;
+export default router;

@@ -6,6 +6,7 @@ import Message from "components/message/Message";
 
 
 const MessagePage = () => {
+  
   return (
     <Box>
       <Navbar />

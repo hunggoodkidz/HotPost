@@ -274,7 +274,6 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Post"
         401:
           description: "Unauthorized"
       security:

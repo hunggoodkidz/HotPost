@@ -87,8 +87,6 @@ const PostWidget = ({
     const deletedPost = await response.json()
     dispatch(setPost({ post: deletedPost }))
     window.location.reload();
-
-
   }
   return (
     <WidgetWrapper m="2rem 0">

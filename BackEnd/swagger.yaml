@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   description: "This is a experiment of an api development."
   version: "1.0.0"
-  title: "Hostpost Swagger API"
+  title: "Hotpost Swagger API"
 host: "localhost:3001"
 basePath: "/"
 
@@ -172,7 +172,7 @@ paths:
           schema:
         500:
           description: Internal server error
-          
+
   /conversations/{userID}/:
     get:
       summary: Get the conversation by User ID
@@ -279,31 +279,29 @@ paths:
           description: "Unauthorized"
       security:
         - bearerAuth: []
-    patch:
+  /posts/{id}:
+    delete:
+      summary: Delete a post by ID
       tags:
         - "Posts"
-      summary: "Like a post"
-      description: "Like a post by its ID."
-      produces:
-        - "application/json"
       parameters:
-        - in: "path"
-          name: "id"
-          description: "ID of the post to like."
+        - name: id
+          in: path
+          description: ID of the post to delete
           required: true
-          type: "string"
-        - in: "header"
-          name: "Authorization"
-          description: "Access token."
-          required: true
-          type: "string"
-      responses:
-        200:
-          description: "Successful operation"
           schema:
-            $ref: "#/definitions/Post"
-        401:
-          description: "Unauthorized"
+            type: string
+      responses:
+        '200':
+          description: The deleted post
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          description: Post not found
+        '500':
+          description: Internal server error
   /posts/{userId}/posts:
     get:
       tags:
@@ -369,15 +367,3 @@ paths:
             $ref: "#/definitions/Post"
         401:
           description: "Unauthorized"
-  /swagger:
-    get:
-      tags:
-        - "Swagger"
-      summary: "Get Swagger documentation"
-      description: "Returns the Swagger UI to display the API documentation."
-      produces:
-        - "text/html"
-      responses:
-        200:
-          description: "Successful operation"
-  

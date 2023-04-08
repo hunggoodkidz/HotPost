@@ -3,6 +3,7 @@ import {
   FavoriteBorderOutlined,
   FavoriteOutlined,
   ShareOutlined,
+  RemoveOutlined
 } from '@mui/icons-material'
 import {
   Box,
@@ -42,6 +43,17 @@ const PostWidget = ({
   const { palette } = useTheme()
   const main = palette.neutral.main
   const primary = palette.primary.main
+  
+  const handleDelete = async () => {
+    const response = await fetch(`http://localhost:3001/posts/${postId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const deletedPost = await response.json()
+    dispatch(setPost({ post: deletedPost }))
+  }
 
   const patchLike = async () => {
     const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
@@ -72,6 +84,11 @@ const PostWidget = ({
     const updatedPost = await response.json()
     dispatch(setPost({ post: updatedPost }))
     setComment('')
+    const deletedPost = await response.json()
+    dispatch(setPost({ post: deletedPost }))
+    window.location.reload();
+
+
   }
   return (
     <WidgetWrapper m="2rem 0">
@@ -114,9 +131,9 @@ const PostWidget = ({
           </FlexBetween>
         </FlexBetween>
 
-        <IconButton>
-          <ShareOutlined />
-        </IconButton>
+        <IconButton onClick={handleDelete}>
+        <RemoveOutlined />
+      </IconButton>
       </FlexBetween>
       {isComments && (
         <Box mt="0.5rem">

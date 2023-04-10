@@ -4,6 +4,8 @@ HotPost is a social media website that allows people to connect, communicate and
 
 Star⭐ the repo if you like what you see😉.
 
+Note: The unit test folder are stored in Backend
+
 ## ✨ Requirements
 
 - Any Operating System (ie. MacOS X, Linux, Windows)

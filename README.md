@@ -12,25 +12,7 @@ Note: The unit test folder are stored in Backend
 - Any IDE with npm installed (VSCode is recommended)
 - A brain to think I guess.. 🤓🤓
 
-Back-End (Server): NodeJS + MongoDB
-
-- Authentication: JWT
-- Authorization
-- CRUD entities
-- RESTful APIs
-
-Front-End (Client):
-
-- ReactJS
-- etc... Any platform used in JS
-- MongoDB 
-
 ## Features
-
-In progress....
-
-Future features:
-
 - Custom photo feed
 - Post photo posts from camera or gallery
   - Like posts
@@ -50,18 +32,6 @@ Future features:
 - Dark Mode Support
 - Stories/Status
 - Used Provider to manage state
-
-## Screenshots
-
-- In progress
-
-# What's Next?
-
-- [] Studying in class lmao
-
-# Note
-
-- Everything is in progressing so please be patient because we're still students :P
 
 ## Author(s)
 

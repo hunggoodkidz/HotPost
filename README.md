@@ -6,6 +6,10 @@ Star⭐ the repo if you like what you see😉.
 
 Note: The unit test folder are stored in Backend
 
+<p>
+<img src="docs/Homepage.png"/> 
+</p>
+
 ## ✨ Requirements
 
 - Any Operating System (ie. MacOS X, Linux, Windows)
